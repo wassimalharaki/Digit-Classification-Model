@@ -7,7 +7,17 @@ function clearCanvas() {
 clearCanvas();
 
 let mousedown = false;
-addEventListener('mousedown', () => {
+addEventListener('mousedown', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    ctx.beginPath();
+    ctx.arc(x, y, 25, 0, Math.PI * 2, false);
+    var grd = ctx.createRadialGradient(x, y, 10, x, y, 25);
+    grd.addColorStop(0, "white");
+    grd.addColorStop(1, "rgba(255, 255, 255, 0)");
+    ctx.fillStyle = grd;
+    ctx.fill();
     mousedown = true;
 });
 

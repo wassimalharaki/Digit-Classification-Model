@@ -9,7 +9,7 @@ os.environ['KMP_DUPLICATE_LIB_OK'] = 'True'
 model = load_model('digit_classification.h5')
 
 (x_train, y_train), (x_test, y_test) = mnist.load_data()
-x_test = x_test/255
+x_test = x_test / 255
 
 index = random.randint(0, len(x_test))
 img = x_test[index]
@@ -20,7 +20,7 @@ input_prediction = model.predict(img_reshaped)
 
 input_pred_label = np.argmax(input_prediction)
 
-print('The Handwritten Digit at index', index, 'is recognised as', input_pred_label)
+print('Image at index:', index, "\nPredicted:", input_pred_label, "\nActual:", y_test[index])
 
 matplotlib.pyplot.imshow(img)
 matplotlib.pyplot.show()
