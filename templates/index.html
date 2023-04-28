@@ -1,0 +1,45 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="/static/styles.css"/>
+    <script src="/static/app.js" defer></script>
+    <link rel="icon" type="image/x-icon" href="/static/favicon.ico">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <title>Digit Classification</title>
+</head>
+<body>
+    <div class="parent">
+        <p id="prediction" class="prediction">Prediction:  {{prediction}}</p>
+        <div class="header">
+            Wassim's Digit Classification Website
+        </div>
+        <div class="body">
+            <canvas id="canvas" width="600" height="600"></canvas>
+            <div class="button-container">
+                <a download="" href="" onclick="submit(this)">
+                    <button id="submit" class="button">SUBMIT</button>
+                </a>
+                <button id="clear" class="button" onclick="clearCanvas()">CLEAR</button>
+            </div>
+        </div>
+    </div>
+    <div id="redirects" style="display: none;">
+        <a href="/submit" id="submitRedirect"></a>
+    </div>
+    <script>
+        let redirect = document.getElementById("submitRedirect");
+        function submit(el) {
+            var image = canvas.toDataURL("image/jpg");
+            el.download = Math.floor(Math.random() * 100000000);
+            el.href = image;
+            redirect.href = "/submit/" + el.download + ".png";
+            setTimeout(() => {
+                redirect.click();
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
